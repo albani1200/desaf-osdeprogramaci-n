@@ -22,6 +22,7 @@ especies_lago <- especies %>%
 
 print(especies_lago)
 ```
+
 ### Resultado
 
 | especie | habitat | tamano | peso |
@@ -30,7 +31,56 @@ print(especies_lago)
 | Ajolote | Lago    | 30     | 150  |
 
 
-#  Desafío 2 Transformación de datos y crear nuevas variables
+# Generación de gráficos 2
+* Para este reto, puedes usar el dataset iris que viene preinstalado en R. Se trata de un conjunto de datos sobre flores que incluye medidas como el largo y ancho del sépalo y el pétalo.
+* Crear un gráfico de dispersión entre Sepal.Length y Sepal.Width, y colorear los puntos según la especie.
+
+```r
+library(ggplot2)
+
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point(size = 3) +
+  labs(title = "Relación entre Largo y Ancho de Sépalo",
+       x = "Largo del Sépalo",
+       y = "Ancho del Sépalo") +
+  theme_minimal() +
+  scale_color_manual(values = c("setosa" = "purple", "versicolor" = "black", "virginica" = "yellow"))
+
+```
+
+![sepalo](https://github.com/user-attachments/assets/42c39b8f-dbcd-481d-9621-2f0c020a3f5c)
+
+# Desafío 3 Agrupar datos y realizar cálculos agregados 
+* Agrupar las calificaciones por estudiante y calcular el promedio de calificación para cada uno.
+
+```r
+# Crear el data frame de calificaciones
+calificaciones <- data.frame(
+  estudiante = c("Ana", "Carlos", "Lucía", "Jorge", "Ana", "Carlos", "Lucía", "Jorge"),
+  asignatura = c("Matemáticas", "Matemáticas", "Matemáticas", "Matemáticas", "Historia", "Historia", "Historia", "Historia"),
+  calificacion = c(95, 85, 92, 88, 78, 82, 85, 90)
+)
+
+# Agrupar por estudiante y calcular el promedio de calificación
+promedio_calificaciones <- calificaciones %>%
+  group_by(estudiante) %>%
+  summarise(promedio = mean(calificacion))
+
+print(promedio_calificaciones)
+
+```
+### Resultado 
+
+| estudiante | promedio |
+|------------|----------|
+| Ana        | 86.5     |
+| Carlos     | 83.5     |
+| Jorge      | 89       |
+| Lucía      | 88.5     |
+
+
+
+#  Desafío 4 Transformación de datos y crear nuevas variables
 * Crear una nueva columna con las alturas en metros.
 * Mostrar el nuevo data frame.
 
@@ -58,7 +108,7 @@ print(alturas)
 | Miguel | 180       | 1.80     |
 
 
-# Desafío 3 Generación de gráficos de barras
+# Desafío 5 Generación de gráficos de barras
 * Crear un gráfico de barras para visualizar las ventas mensuales.
 
 ```r
@@ -85,6 +135,9 @@ ggplot(ventas, aes(x = mes, y = ventas, fill = mes)) +
 ```
 
 ![ventas](https://github.com/user-attachments/assets/9414cd7c-eff5-40e1-a4a6-2b19d4fa5be2)
+
+
+
 
 
 
