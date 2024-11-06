@@ -137,6 +137,57 @@ ggplot(ventas, aes(x = mes, y = ventas, fill = mes)) +
 ![ventas](https://github.com/user-attachments/assets/9414cd7c-eff5-40e1-a4a6-2b19d4fa5be2)
 
 
+# Desafío 6 Lectura & escritura de archivos cvs
+* Calcular el total de ingresos por producto (precio * cantidad vendida) y agregarlo como una nueva columna.
+
+```r
+# Crear el data frame de productos
+productos <- data.frame(
+  producto = c("A", "B", "C", "D"),
+  precio = c(20, 35, 50, 10),
+  cantidad_vendida = c(100, 200, 150, 250)
+)
+
+# Calcular el total de ingresos y agregarlo como una nueva columna
+productos <- productos %>%
+  mutate(ingreso_total = precio * cantidad_vendida)
+
+# Escribir el archivo CSV
+write.csv(productos, "productos_con_ingresos.csv", row.names = FALSE)
+print(productos)
+```
+
+### Resultado
+
+| producto | precio | cantidad vendida | ingreso total |
+|----------|--------|------------------|---------------|
+| A        | 20     | 100              | 2000         |
+| B        | 35     | 200              | 7000         |
+| C        | 50     | 150              | 7500         |
+| D        | 10     | 250              | 2500         |
+
+
+# Desafío 7 Gráfico de caja (Boxplot)
+* Crear un gráfico de caja (boxplot) que muestre la distribución de millas por galón (mpg) en función del número de cilindros (cyl).
+
+```r
+# Cargar la libreria
+
+library(ggplot2)
+
+# Crear el boxplot para la variable mpg según el número de cilindros (cyl) con colores diferentes
+ggplot(mtcars, aes(x = factor(cyl), y = mpg, fill = factor(cyl))) +
+  geom_boxplot() +
+  labs(title = "Distribución de MPG según el Número de Cilindros",
+       x = "Número de Cilindros",
+       y = "Millas por Galón (MPG)") +
+  scale_fill_manual(values = c("4" = "lightblue", "6" = "lightgreen", "8" = "coral")) + 
+  theme_minimal()
+```
+
+![cilindros](https://github.com/user-attachments/assets/bcf9a0d9-0fac-4884-bc13-424ad1b5da46)
+
+
 
 
 
